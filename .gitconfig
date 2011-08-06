@@ -1,0 +1,23 @@
+[user]
+	name = Stefan Bauckmeier
+	email = stefan.bauckmeier@akra.de
+[giggle]
+	main-window-maximized = true
+	main-window-geometry = 0x0+0+0
+	main-window-view = HistoryView
+	history-view-vpane-position = 396
+	show-graph = true
+	file-view-vpane-position = 607
+	file-view-hpane-position = 249
+[mergetool]
+	cmd = meld
+[color]
+	status = auto
+	diff = auto
+	branch = auto
+[alias]
+	co = checkout
+	st = status
+	ci = commit
+	rc = rebase --continue
+	pr = pull --rebase
