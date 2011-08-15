@@ -2,15 +2,15 @@
 	name = Stefan Bauckmeier
 	email = stefan.bauckmeier@akra.de
 [giggle]
-	main-window-maximized = true
-	main-window-geometry = 0x0+0+0
+	main-window-maximized = false
+	main-window-geometry = 1523x1022+1670+0
 	main-window-view = HistoryView
-	history-view-vpane-position = 396
+	history-view-vpane-position = 420
 	show-graph = true
-	file-view-vpane-position = 607
+	file-view-vpane-position = 764
 	file-view-hpane-position = 249
-[mergetool]
-	cmd = meld
+[merge]
+	tool = meld
 [color]
 	status = auto
 	diff = auto
