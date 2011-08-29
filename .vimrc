@@ -74,3 +74,4 @@ endfunction
 
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
+autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
