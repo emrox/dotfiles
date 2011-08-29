@@ -75,3 +75,9 @@ endfunction
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+
+" Key mapping
+map \ff :FufFile<CR>
+map \gf :FufCoverageFile<CR>
+map \ag :Ack 
+
