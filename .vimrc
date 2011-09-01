@@ -78,10 +78,10 @@ autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 
 " 'Intelligent' Home Key
 noremap  <expr> <Home> (col('.') == matchend(getline('.'), '^\s*')+1 ? '0'  : '^')
-noremap  <expr> <End>  (col('.') == match(getline('.'),    '\s*$')   ? '$'  : 'g_')
-vnoremap <expr> <End>  (col('.') == match(getline('.'),    '\s*$')   ? '$h' : 'g_')
+"noremap  <expr> <End>  (col('.') == match(getline('.'),    '\s*$')   ? '$'  : 'g_')
+"vnoremap <expr> <End>  (col('.') == match(getline('.'),    '\s*$')   ? '$h' : 'g_')
 imap <Home> <C-o><Home>
-imap <End>  <C-o><End>
+"imap <End>  <C-o><End>
 
 " Key mapping
 map \ff :FufFile<CR>
