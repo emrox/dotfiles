@@ -111,8 +111,6 @@ c_red=`tput setaf 1`
 c_green=`tput setaf 2`
 c_sgr0=`tput sgr0`
 
-
-
 parse_git_branch () {
 	if git rev-parse --git-dir >/dev/null 2>&1
 	then
@@ -139,7 +137,16 @@ branch_color () {
 	echo -ne $color
 }
 
-PS1='[\[$(branch_color)\]$(parse_git_branch)\[${c_sgr0}\]] \u@\[${c_red}\]\w\[${c_sgr0}\]: '
+git_show_branch () {
+	if git rev-parse --git-dir >/dev/null 2>&1
+	then
+		echo -ne "[$(branch_color)$(parse_git_branch)${c_sgr0}] " 
+
+	fi
+}
+
+#PS1='[\[$(branch_color)\]$(parse_git_branch)\[${c_sgr0}\]] \u@\h:\[${c_red}\]\w\[${c_sgr0}\]# '
+PS1='$(git_show_branch)\u@\h:\[${c_cyan}\]\w\[${c_sgr0}\]# '
 
 fi
 
