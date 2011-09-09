@@ -74,7 +74,16 @@ endfunction
 
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
-autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+function! SetupEnvironment()
+  let l:path = expand('%:p')
+  if l:path =~ '/sandbox/'
+    setlocal ts=4 sw=4 noexpandtab " tab = 1 tab (eq 4 spaces)
+    "autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
+  else
+    setlocal ts=2 sw=2 expandtab " tab = 2 spaces
+  endif
+endfunction
+autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
 
 " 'Intelligent' Home Key
 noremap  <expr> <Home> (col('.') == matchend(getline('.'), '^\s*')+1 ? '0'  : '^')
@@ -87,4 +96,5 @@ imap <Home> <C-o><Home>
 map \ff :FufFile<CR>
 map \gf :FufCoverageFile<CR>
 map \ag :Ack 
+map \nt :NERDTreeToggle<CR>
 
