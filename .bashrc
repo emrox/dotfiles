@@ -115,38 +115,30 @@ parse_git_branch () {
 	if git rev-parse --git-dir >/dev/null 2>&1
 	then
 		gitver=$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')
+    echo -ne "[$gitver] "
 	else
 		return 0
 	fi
-	echo -e $gitver
 }
 
 branch_color () {
-	if git rev-parse --git-dir >/dev/null 2>&1
-	then
-		color=""
-		if git diff --quiet 2>/dev/null >&2 
-		then
-			color="${c_green}"
-		else
-			color=${c_red}
-		fi
-	else
-		return 0
-	fi
-	echo -ne $color
-}
-
-git_show_branch () {
-	if git rev-parse --git-dir >/dev/null 2>&1
-	then
-		echo -ne "[$(branch_color)$(parse_git_branch)${c_sgr0}] " 
-
-	fi
+  if git rev-parse --git-dir >/dev/null 2>&1
+  then
+    color=""
+    if git diff --quiet 2>/dev/null >&2
+    then
+      color="${c_green}"
+    else
+      color=${c_red}
+    fi
+  else
+    return 0
+  fi
+  echo -ne $color
 }
 
 #PS1='[\[$(branch_color)\]$(parse_git_branch)\[${c_sgr0}\]] \u@\h:\[${c_red}\]\w\[${c_sgr0}\]# '
-PS1='$(git_show_branch)\u@\h:\[${c_cyan}\]\w\[${c_sgr0}\]# '
+PS1='\[$(branch_color)\]$(parse_git_branch)\[${c_sgr0}\]\u@\h:\[${c_cyan}\]\w\[${c_sgr0}\]# '
 
 fi
 
