@@ -13,7 +13,7 @@ set autoread
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set 7 lines to the curors - when moving vertical..
-set so=7
+set so=4
 
 set wildmenu "Turn on WiLd menu
 
@@ -97,4 +97,5 @@ map \ff :FufFile<CR>
 map \gf :FufCoverageFile<CR>
 map \ag :Ack 
 map \nt :NERDTreeToggle<CR>
+map <F8> :setlocal indentexpr=
 
