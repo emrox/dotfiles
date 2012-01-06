@@ -1,0 +1,6 @@
+# Always color, even piping
+--color
+
+# Add haml support
+--type-add=haml=.haml
+
