@@ -3,4 +3,5 @@
 
 # Add haml support
 --type-add=haml=.haml
+--type-add=sass=.sass
 
