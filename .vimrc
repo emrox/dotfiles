@@ -100,4 +100,5 @@ map \gf :FufCoverageFile<CR>
 map \ag :Ack 
 map \nt :NERDTreeToggle<CR>
 map <F8> :setlocal indentexpr=
+nnoremap <silent> <C-S> :if expand("%") == ""<CR>browse confirm w<CR>else<CR>confirm w<CR>endif<CR>
 
