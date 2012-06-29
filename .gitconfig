@@ -3,11 +3,11 @@
 	email = stefan.bauckmeier@akra.de
 [giggle]
 	main-window-maximized = false
-	main-window-geometry = 1523x1022+1670+0
-	main-window-view = HistoryView
-	history-view-vpane-position = 420
+	main-window-geometry = 1558x847+1680+25
+	main-window-view = FileView
+	history-view-vpane-position = 324
 	show-graph = true
-	file-view-vpane-position = 764
+	file-view-vpane-position = 400
 	file-view-hpane-position = 249
 [merge]
 	tool = meld
@@ -21,3 +21,12 @@
 	ci = commit
 	rc = rebase --continue
 	pr = pull --rebase
+	switch = !legit switch \"$@\"
+	branches = !legit branches
+	sprout = !legit sprout \"$@\"
+	unpublish = !legit unpublish \"$@\"
+	harvest = !legit harvest \"$@\"
+	sync = !legit sync \"$@\"
+	publish = !legit publish \"$@\"
+	graft = !legit graft \"$@\"
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
