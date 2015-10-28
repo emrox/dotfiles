@@ -1,23 +1,35 @@
 [user]
 	name = Stefan Bauckmeier
 	email = stefan.bauckmeier@akra.de
-[giggle]
-	main-window-maximized = false
-	main-window-geometry = 1523x1022+1670+0
-	main-window-view = HistoryView
-	history-view-vpane-position = 420
-	show-graph = true
-	file-view-vpane-position = 764
-	file-view-hpane-position = 249
-[merge]
-	tool = meld
+
 [color]
-	status = auto
-	diff = auto
-	branch = auto
+	# Use colors in Git commands that are capable of colored output when
+	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+	ui = auto
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold # line info
+	old = red # deletions
+	new = green # additions
+
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
+[core]
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
 [alias]
 	co = checkout
-	st = status
+	s = status -s
+	st = status -sb
 	ci = commit
 	rc = rebase --continue
 	pr = pull --rebase
@@ -29,6 +41,42 @@
 	sync = !legit sync \"$@\"
 	publish = !legit publish \"$@\"
 	graft = !legit graft \"$@\"
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-[core]
-	editor = vim
+	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit
+	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+	amend = commit --amend --reuse-message=HEAD
+	cleanbranches = "!git branch --merged | grep -v '\\*' | grep -v master | grep -v dev | xargs -n 1 git branch -d"
+	contributors = shortlog --summary --numbered
+	pusho = "!f() { branchname=`git branch 2> /dev/null | grep -e '^\\*' | sed -e 's/^[\\* \\t]*//'`; git push origin \"$branchname\"; }; f"
+	timelog = "!git log --pretty='format:%at %C(yellow)%H%Creset\\n%ai\\n%an <%ae>\\n%s' | sort -r | cut -d' ' -f2- | sed -e 's/\\\\n/ \\| /g' | tr -d '\\15\\32' | less -RS"
+
+[difftool "dw"]
+	cmd = "/Applications/DeltaWalker.app/Contents/MacOS/git-diff" "$LOCAL" "$REMOTE"
+
+[mergetool "dw"]
+	cmd = "/Applications/DeltaWalker.app/Contents/MacOS/git-merge" "$LOCAL" "$REMOTE" "$BASE" "$MERGED" 
+
+[merge]
+	tool = dw
+
+[push]
+	default = simple
+
+# URL shorthands
+[url "git@github.com:"]
+	insteadOf = "gh:"
+	pushInsteadOf = "github:"
+	pushInsteadOf = "git://github.com/"
+
+[url "git://github.com/"]
+	insteadOf = "github:"
+
+[url "git@gist.github.com:"]
+	insteadOf = "gst:"
+	pushInsteadOf = "gist:"
+	pushInsteadOf = "git://gist.github.com/"
+
+[url "git://gist.github.com/"]
+	insteadOf = "gist:"
